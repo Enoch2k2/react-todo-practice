@@ -1,0 +1,20 @@
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+
+require_relative 'config/application'
+
+Rails.application.load_tasks
+
+task :drop do
+    puts "dropping databases and removing schema...."
+    system('rake db:drop && rm ./db/schema.rb')
+end
+
+task :migrations do
+    puts "creating databases...."
+    system('rake db:create')
+    puts "migrating development database...."
+    system('rake db:migrate')
+    puts "migrating test database...."
+    system('rake db:migrate RAILS_ENV=test')
+end
