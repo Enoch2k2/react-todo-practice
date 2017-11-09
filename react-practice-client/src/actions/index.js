@@ -32,3 +32,18 @@ export function deleteTodo(id){
             .then(message => dispatch({type: "DELETE_TODO", payload: id}))
     }
 }
+
+export function addTodo(todo) {
+    return dispatch => {
+        dispatch({type: "LOADING"});
+        return fetch(LOCALHOST + '/todos', {
+            method: 'post',
+            body: JSON.stringify(todo),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(json => dispatch({type: "ADD_TODO", payload: json}))
+    }
+}

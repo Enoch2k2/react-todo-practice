@@ -16,6 +16,8 @@ export default function TodosReducer(state={loading: false, todos: []}, action){
             var todoIndex = todos.indexOf(todo);
             todos.splice(todoIndex, 1);
             return Object.assign({}, state, {loading: false, todos});
+        case "ADD_TODO":
+            return Object.assign({}, state, {loading: false, todos: [...state.todos, action.payload]})
         default:
             return state;
     }

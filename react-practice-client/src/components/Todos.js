@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Todo from './Todo';
-import { getTodos, toggleComplete, deleteTodo } from '../actions';
+import { getTodos, toggleComplete, deleteTodo, addTodo } from '../actions';
 
 class Todos extends Component {
     constructor(props){
@@ -37,6 +37,8 @@ class Todos extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.props.addTodo(this.state.todo)
+        this.setState({todo: Object.assign({}, this.state.todo, {name: ''})})
     }
 
     render(){
@@ -49,7 +51,7 @@ class Todos extends Component {
                    <div>
                      <h3>Not Completed</h3>
                        <ul>
-                         {incompleteTodos.map(todo => <Todo key={todo.id} id={todo.id} name={todo.name} completed={todo.completed} toggleCompleted={this.handleToggle} handleDelete={this.handleDelete} />)}
+                         {incompleteTodos.map((todo, i) => <Todo key={i} id={todo.id} name={todo.name} completed={todo.completed} toggleCompleted={this.handleToggle} handleDelete={this.handleDelete} />)}
                        </ul>
                    </div>
                 : null}
@@ -57,7 +59,7 @@ class Todos extends Component {
                    <div>
                      <h3>Completed</h3>
                        <ul>
-                         {completedTodos.map(todo => <Todo key={todo.id} id={todo.id} name={todo.name} completed={todo.completed} toggleCompleted={this.handleToggle} handleDelete={this.handleDelete} />)}
+                         {completedTodos.map((todo, i) => <Todo key={i} id={todo.id} name={todo.name} completed={todo.completed} toggleCompleted={this.handleToggle} handleDelete={this.handleDelete} />)}
                        </ul>
                    </div>
                 : null}
@@ -79,7 +81,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({getTodos, toggleComplete, deleteTodo}, dispatch);
+    return bindActionCreators({getTodos, toggleComplete, deleteTodo, addTodo}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);
