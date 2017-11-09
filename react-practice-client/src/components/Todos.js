@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import Todo from './Todo';
-
-const todos = [
-    {
-      "id": 6,
-      "name": "walk the dog",
-      "completed": false,
-      "created_at": "2017-11-09T15:00:45.450Z",
-      "updated_at": "2017-11-09T15:00:45.450Z"
-    },
-    {
-      "id": 7,
-      "name": "work",
-      "completed": true,
-      "created_at": "2017-11-09T15:02:00.231Z",
-      "updated_at": "2017-11-09T15:02:00.231Z"
-    }
-  ]
+import { getTodos } from '../actions';
 
 class Todos extends Component {
+    componentDidMount(){
+        this.props.getTodos();
+    }
+
     render(){
+        const {todos} = this.props;
         return (
             <div>
                 <ul>
@@ -31,4 +22,14 @@ class Todos extends Component {
     }
 }
 
-export default Todos;
+function mapStateToProps(state){
+    return {
+        todos: state.todo.todos
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({getTodos}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);
