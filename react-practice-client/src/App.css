@@ -26,8 +26,9 @@
 
 .todo {
   display: block;
-  text-align: center;
-  margin: 5px auto;
+  text-align: left;
+  float: left;
+  margin: 5px 10%;
   width: 80%;
   font-size: 36px;
   color: blue;
@@ -35,7 +36,74 @@
   padding: 2%;
 }
 
-li.todo:hover {
+.todo:hover {
   background-color: white;
   box-shadow: 1px 1px lightgrey;
+}
+
+.toggle-btn {
+  position: relative;
+  display: block;
+  float: right;
+  clear: left;
+  text-align: right;
+  margin: auto 0;
+  height: 40px;
+  font: 12px bold verdana;
+  border: none;
+}
+
+.todo:hover .toggle-btn:hover {
+  background-color: lightgreen;
+  border: none;
+  box-shadow: 1px 1px green;
+}
+
+h3 {
+  font: 40px bold verdana;
+  color: purple;
+  text-shadow: 1px 1px 1px darkmagenta;
+  clear: both;
+}
+
+.todo-form {
+  position: relative;
+  display: block;
+  height: 60px;
+  width: 80%;
+  margin: 0 auto;
+  font: 36px bold verdana;
+  padding-top: 2%;
+  padding-right: 2%;
+  color: blue;
+  text-shadow: 2px 2px 2px darkblue;
+}
+
+.todo-form:hover {
+  background-color: white;
+  box-shadow: 1px 1px lightgrey;
+}
+
+.todo-form input[type="text"]{
+  display: inline-block;
+  height: 36px;
+  font-size: 35px;
+}
+
+.todo-form input[type="submit"]{
+  position: relative;
+  display: block;
+  float: right;
+  clear: left;
+  text-align: right;
+  margin: auto 0;
+  height: 40px;
+  font: 12px bold verdana;
+  border: none;
+}
+
+.todo-form input[type="submit"]:hover{
+  background-color: lightgreen;
+  border: none;
+  box-shadow: 1px 1px green;
 }

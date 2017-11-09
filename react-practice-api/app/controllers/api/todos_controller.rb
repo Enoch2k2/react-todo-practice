@@ -19,7 +19,7 @@ class Api::TodosController < ApplicationController
     end
 
     def update
-        if @todo.update(todo_params)
+        if @todo.update(completed: !@todo.completed)
             render json: @todo, status: 200
         else
             render json: {message: @todo.errors.full_messages}, status: 400
